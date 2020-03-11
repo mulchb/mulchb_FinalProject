@@ -2,19 +2,18 @@ import math
 from unittest import TestCase
 import random
 
-from UnitTestOnly import calculator
+from UnitTestAndCode import calculator
 
 
 class test_Multiplication(TestCase):
 
     def test_constant(self):
-        self.assertEqual(calculator.Multiplication(112799, 19038),
-                         2147467362)  # which is approximately 2^31 which is the size of 4 bytes
+        self.assertEqual(calculator.Multiplication(112799, 19038), 112799*19038)  # which is approximately 2^31 which is the size of 4 bytes
         self.assertEqual(calculator.Multiplication(112799, -19038), -2147467362)
         self.assertEqual(calculator.Multiplication(-112799, 19038), -2147467362)
         self.assertEqual(calculator.Multiplication(112799, 19038), 2147467362)
-        self.tEqual(calculator.Multiplication(10 / 13, 15 / 10), 150 / 130)
-        self.assertEqual(calculator.Multiplication(.00000123, 1 / 10000), .000000000123)
+        self.assertEqual(calculator.Multiplication(10 / 13, 15 / 10), (10/13) * (15/10))
+        self.assertEqual(calculator.Multiplication(.00000123, 1 / 10000), (1/10000) * .00000123)
         self.assertEqual(calculator.Multiplication(-1, -1), 1)
         self.assertEqual(calculator.Multiplication(-1, 1), -1)
         self.assertEqual(calculator.Multiplication(1, 1), 1)
@@ -33,11 +32,11 @@ class test_Division(TestCase):
 
     def test_division(self):
         self.assertEqual(calculator.Division(112799, 19038), 112799 / 19038)
-        assertEqual(calculator.Division(112799, -19038), 112799 / -19038)
+        self.assertEqual(calculator.Division(112799, -19038), 112799 / -19038)
         self.assertEqual(calculator.Division(-112799, 19038), -112799 / 19038)
         self.assertEqual(calculator.Division(-112799, -19038), (-112799) / (-19038))
-        self.assertEqual(calculator.Division(10 / 13, 15 / 10), 100 / (13 * 15))
-        self.assertEqual(calculator.Division(.00000123, 1 / 10000), .000000000123)
+        self.assertEqual(calculator.Division(10 / 13, 15 / 10),  (10/ 13) / (15 /10))
+        self.assertEqual(calculator.Division(.00000123, 1 / 10000), 0.0123)
         self.assertEqual(calculator.Division(-1, -1), 1)
         self.assertEqual(calculator.Division(-1, 1), -1)
         self.assertEqual(calculator.Division(1, 1), 1)
@@ -62,7 +61,6 @@ class test_Square_Root(TestCase):
         self.assertEqual(calculator.Square_Root(.00000123), .00000123 ** .5)
         self.assertEqual(calculator.Square_Root(0), 0)
         self.assertEqual(calculator.Square_Root(-1), None)
-        self.assertEqual(calculator.Square_Root(-0), None)
         self.assertEqual(calculator.Square_Root(-0.000010101), None)
 
     def test_test_random_testing(self):
@@ -115,7 +113,7 @@ class test_Factorial(TestCase):
         self.assertEqual(calculator.Factorial(3), math.factorial(3))
         self.assertEqual(calculator.Factorial(1), math.factorial(1))
         self.assertEqual(calculator.Factorial(5 / 7), None)
-        self.assertEqual(calculator.Factorial(-10))
+        self.assertEqual(calculator.Factorial(-10), None)
 
     def test_random_testing(self):
         random.random()
@@ -131,7 +129,7 @@ class test_Absolute_Value(TestCase):
         self.assertEqual(calculator.Absolute_Value(19.123456789), 19.123456789)
         self.assertEqual(calculator.Absolute_Value(-1700.321321329999), 1700.321321329999)
         self.assertEqual(calculator.Absolute_Value(.00000123), .00000123)
-        self.assertEqual(calculator.Absolute_Value(-.00000123), -.00000123)
+        self.assertEqual(calculator.Absolute_Value(-.00000123), .00000123)
         self.assertEqual(calculator.Absolute_Value(-0), 0)
         self.assertEqual(calculator.Absolute_Value(-3 / 2), 3 / 2)
         self.assertEqual(calculator.Absolute_Value(-3 / -2), 3 / 2)
@@ -172,7 +170,7 @@ class test_Cos(TestCase):
         self.assertEqual(calculator.Cos(-2 ** 31), math.cos(-2 ** 31))
         self.assertEqual(calculator.Cos(1.132321), math.cos(1.132321))
         self.assertEqual(calculator.Cos(-3.14), math.cos(-3.14))
-        self.assertEqual(calculator.Cos(0), 0)
+        self.assertEqual(calculator.Cos(0), 1)
         self.assertEqual(calculator.Cos(-3 / -2), math.cos(-3 / -2))
         self.assertEqual(calculator.Cos(-3 / 2), math.cos(-3 / 2))
         self.assertEqual(calculator.Cos(-3 / -2), math.cos(-3 / -2))
